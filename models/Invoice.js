@@ -10,68 +10,42 @@ const invoiceSchema = new Schema(
     },
     assignmentNumber: String,
     recipient: {
-      authority: {
-        type: String,
-        required: true,
-        trim: true
-      },
-      refPerson: {
-        type: String,
-        trim: true
-      },
+      authority: String,
+      refPerson: String,
       street: {
         type: String,
-        required: true,
-        trim: true
+        required: true
       },
-      zip: {
-        type: String,
-        required: true,
-        trim: true
-      },
+      zip: String,
       city: {
         type: String,
-        required: true,
-        trim: true
+        required: true
       }
     },
     rows: [
       {
         description: {
           type: String,
-          required: true,
-          trim: true
+          required: true
         },
         date: {
-          type: String,
-          trim: true
+          type: Date,
+          default: Date.now
         },
         quantity: {
           type: Number,
-          required: true,
-          trim: true
+          required: true
         },
-        unit: {
-          type: String,
-          required: true,
-          trim: true
-        },
+        unit: String,
         price: {
           type: Number,
-          required: true,
-          trim: true
+          required: true
         },
         amount: {
           type: Number,
-          required: true,
-          trim: true
+          required: true
         },
-        hasVAT: Boolean,
-        VAT: {
-          type: Number,
-          required: true,
-          trim: true
-        }
+        hasVAT: Boolean
       }
     ],
     totalBeforeVAT: Number,

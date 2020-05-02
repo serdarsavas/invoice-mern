@@ -31,7 +31,9 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  wechatId: String,
   position: String,
+  company: String,
   registrationNumber: String,
   vatNumber: String,
   bankgiro: String,
