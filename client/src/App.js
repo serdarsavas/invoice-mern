@@ -1,24 +1,20 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-//Redux
-import { Provider } from 'react-redux';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
-import Alert from './components/layout/Alert';
-import Register from './components/auth/Register';
-import Login from './components/auth/Login';
+import Routes from './components/routing/Routes';
+
+// Redux
+import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
-
 const App = () => {
   useEffect(() => {
+    setAuthToken(localStorage.token);
     store.dispatch(loadUser());
   }, []);
 
@@ -27,14 +23,10 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <Route exact path='/' component={Landing} />
-          <section className='container'>
-            <Alert />
-            <Switch>
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-            </Switch>
-          </section>
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route component={Routes} />
+          </Switch>
         </Fragment>
       </Router>
     </Provider>

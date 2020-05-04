@@ -12,52 +12,49 @@ const Login = ({ login, isAuthenticated }) => {
 
   const { email, password } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     login(email, password);
   };
 
-  //Redirect if logged in
-
-  // if (isAuthenticated) {
-  //   return <Redirect to='/dashboard' />;
-  // }
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Sign In</h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i> Sign In To Your Account
+      <h1 className="large text-primary">Logga in</h1>
+      <p className="lead">
+        <i className="fas fa-user" /> Logga in på ditt konto
       </p>
-      <form className='form' onSubmit={e => onSubmit(e)}>
-        <div className='form-group'>
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
+        <div className="form-group">
           <input
-            type='email'
-            placeholder='Epostadress'
-            name='email'
+            type="email"
+            placeholder="Epostadress"
+            name="email"
             value={email}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             required
           />
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <input
-            type='password'
-            placeholder='Password'
-            name='password'
-            minLength='6'
+            type="password"
+            placeholder="Lösenord"
+            name="password"
             value={password}
-            onChange={e => onChange(e)}
-            required
+            onChange={(e) => onChange(e)}
+            minLength="6"
           />
         </div>
-        <input type='submit' className='btn btn-primary' value='Login' />
+        <input type="submit" className="btn btn-primary" value="Login" />
       </form>
-      <p className='my-1'>
-        Har du inget konto? <Link to='/register'>Registrera dig</Link>
+      <p className="my-1">
+        Har du inget konto? <Link to="/register">Registrera dig</Link>
       </p>
     </Fragment>
   );
@@ -68,8 +65,8 @@ Login.propTypes = {
   isAuthenticated: PropTypes.bool
 };
 
-const mapStateToProps = state => {
-  return { isAuthenticated: state.auth.isAuthenticated };
-};
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
 export default connect(mapStateToProps, { login })(Login);

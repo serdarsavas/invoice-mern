@@ -7,13 +7,12 @@ import {
 
 const initialState = {
   profile: null,
-  profiles: [],
   repos: [],
   loading: true,
   error: {}
 };
 
-export default (state = initialState, action) => {
+export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -24,21 +23,20 @@ export default (state = initialState, action) => {
         profile: payload,
         loading: false
       };
-
     case PROFILE_ERROR:
       return {
         ...state,
         error: payload,
-        loading: false
+        loading: false,
+        profile: null
       };
     case CLEAR_PROFILE:
       return {
         ...state,
         profile: null,
-        repos: [],
-        loading: false
+        repos: []
       };
     default:
       return state;
   }
-};
+}

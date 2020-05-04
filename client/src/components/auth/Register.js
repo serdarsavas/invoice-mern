@@ -15,75 +15,69 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   const { name, email, password, password2 } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-
     if (password !== password2) {
-      return setAlert('Lösenorden matchar inte', 'danger');
+      setAlert('Lösenorden matchar inte', 'danger');
+    } else {
+      register({ name, email, password });
     }
-
-    register({ name, email, password });
   };
 
-  // if (isAuthenticated) {
-  //   return <Redirect to='/dashboard' />;
-  // }
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Sign Up</h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i> Skapa ett konto
+      <h1 className="large text-primary">Registrering</h1>
+      <p className="lead">
+        <i className="fas fa-user" /> Skapa ett konto
       </p>
-      <form className='form' onSubmit={e => onSubmit(e)}>
-        <div className='form-group'>
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
+        <div className="form-group">
           <input
-            type='text'
-            placeholder='Name'
-            name='name'
+            type="text"
+            placeholder="Namn"
+            name="name"
             value={name}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <input
-            type='email'
-            placeholder='Epostadress'
-            name='email'
+            type="email"
+            placeholder="Epostadress"
+            name="email"
             value={email}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <input
-            type='password'
-            placeholder='Lösenord'
-            name='password'
+            type="password"
+            placeholder="Lösenord"
+            name="password"
             value={password}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <input
-            type='password'
-            placeholder='Bekräfta lösenord'
-            name='password2'
-            minLength='6'
+            type="password"
+            placeholder="Bekräfta lösenord"
+            name="password2"
             value={password2}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
-        <input
-          type='submit'
-          className='btn btn-primary'
-          value='Registrera dig'
-        />
+        <input type="submit" className="btn btn-primary" value="Registrera" />
       </form>
-      <p className='my-1'>
-        Already have an account? <Link to='/login'>Logga in</Link>
+      <p className="my-1">
+        Har du redan ett konto? <Link to="/login">Logga in</Link>
       </p>
     </Fragment>
   );
@@ -95,8 +89,8 @@ Register.propTypes = {
   isAuthenticated: PropTypes.bool
 };
 
-const mapStateToProps = state => {
-  return { isAuthenticated: state.auth.isAuthenticated };
-};
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
 export default connect(mapStateToProps, { setAlert, register })(Register);

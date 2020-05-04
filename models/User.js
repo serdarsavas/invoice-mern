@@ -15,22 +15,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  phone: {
-    type: String,
-    required: true
-  },
-  street: {
-    type: String,
-    required: true
-  },
-  zip: {
-    type: String,
-    reguired: true
-  },
-  city: {
-    type: String,
-    required: true
-  },
+  phone: String,
+  street: String,
+  zip: String,
+  city: String,
   wechatId: String,
   position: String,
   company: String,

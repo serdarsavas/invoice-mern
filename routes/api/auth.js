@@ -1,29 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const auth = require('../../middleware/auth');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { check, validationResult } = require('express-validator');
 
-const config = require('config');
-const auth = require('../../middleware/auth');
 const User = require('../../models/User');
 
-//@route GET api/auth
-//@desc Test route
-//@access Public
+// @route    GET api/auth
+// @desc     Get user by token
+// @access   Private
 router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send('Server error');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
-//@route POST api/auth
-//@desc Authenticate user and get token
-//@access Public
+// @route    POST api/auth
+// @desc     Authenticate user & get token
+// @access   Public
 router.post(
   '/',
   [
@@ -78,5 +78,7 @@ router.post(
     }
   }
 );
+
+module.exports = router;
 
 module.exports = router;

@@ -1,34 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
+
 const User = require('../../models/User');
 
-//@route POST api/users
-//@desc Register user
-//@access Public
+// @route    POST api/users
+// @desc     Register user
+// @access   Public
 router.post(
   '/',
   [
-    check('name', 'Ange namn').trim().not().isEmpty(),
+    check('name', 'Ange namn').not().isEmpty(),
     check('email', 'Var god skriv in en giltig epostadress').isEmail(),
-    check('password', 'Lösenordet måste innehålla minst 6 tecken')
-      .trim()
-      .isLength({ min: 6 }),
-    check('confirmPassword', 'Lösenorden måste matcha')
-      .not()
-      .isEmpty()
-      .withMessage('* Du måste bekräfta ditt lösenord')
-      .trim()
-      .custom((value, { req }) => {
-        if (value !== req.body.password) {
-          throw new Error('* Lösenorden matchar inte');
-        }
-        return true;
-      })
+    check('password', 'Lösenordet måste innehålla minst 6 tecken').isLength({
+      min: 6
+    })
   ],
   async (req, res) => {
     const errors = validationResult(req);
