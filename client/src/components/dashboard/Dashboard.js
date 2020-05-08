@@ -16,18 +16,18 @@ const Dashboard = ({
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Användarpanel</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Välkommen {user && user.name}
+      <h1 className='large text-primary'>Användarpanel</h1>
+      <p className='lead'>
+        <i className='fas fa-user' /> Välkommen {user && user.name}
       </p>
       {profile !== null ? (
         <Fragment>
-          <Link to="/edit-profile" className="btn btn-light">
-            <i className="fas fa-user-circle text-primary" /> Uppdatera Profil
+          <Link to='/edit-profile' className='btn btn-light'>
+            <i className='fas fa-user-circle text-primary' /> Uppdatera Profil
           </Link>
-          <div className="my-2">
-            <button className="btn btn-danger" onClick={() => deleteAccount()}>
-              <i className="fas fa-user-minus" /> Radera mitt konto
+          <div className='my-2'>
+            <button className='btn btn-danger' onClick={() => deleteAccount()}>
+              <i className='fas fa-user-minus' /> Radera konto
             </button>
           </div>
         </Fragment>
@@ -37,7 +37,7 @@ const Dashboard = ({
             Du har ännu inte någon profil. För att kunna skapa fakturor behöver
             du uppdatera din användarinformation.
           </p>
-          <Link to="/create-profile" className="btn btn-primary my-1">
+          <Link to='/create-profile' className='btn btn-primary my-1'>
             Skapa Profil
           </Link>
         </Fragment>
@@ -53,7 +53,7 @@ Dashboard.propTypes = {
   profile: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile
 });

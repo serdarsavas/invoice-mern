@@ -15,18 +15,12 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  phone: String,
-  street: String,
-  zip: String,
-  city: String,
-  wechatId: String,
-  position: String,
-  company: String,
-  registrationNumber: String,
-  vatNumber: String,
-  bankgiro: String,
   resetToken: String,
-  resetTokenExpiration: Date
+  resetTokenExpiration: Date,
+  invoiceTemplate: {
+    type: String,
+    default: 1
+  }
 });
 
 userSchema.virtual('invoices', {

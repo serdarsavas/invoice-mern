@@ -8,21 +8,20 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Developers</Link>
+        <Link to='/invoice'>Ny faktura</Link>
       </li>
       <li>
-        <Link to="/posts">Posts</Link>
+        <Link to='/invoices'>Fakturor</Link>
       </li>
       <li>
-        <Link to="/dashboard">
-          <i className="fas fa-user" />{' '}
-          <span className="hide-sm">Dashboard</span>
+        <Link to='/dashboard'>
+          <i className='fas fa-user' /> <span className='hide-sm'>Profil</span>
         </Link>
       </li>
       <li>
-        <a onClick={logout} href="#!">
-          <i className="fas fa-sign-out-alt" />{' '}
-          <span className="hide-sm">Logout</span>
+        <a onClick={logout} href='#!'>
+          <i className='fas fa-sign-out-alt' />{' '}
+          <span className='hide-sm'>Logga ut</span>
         </a>
       </li>
     </ul>
@@ -31,22 +30,19 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Developers</Link>
+        <Link to='/register'>Registrering</Link>
       </li>
       <li>
-        <Link to="/register">Register</Link>
-      </li>
-      <li>
-        <Link to="/login">Login</Link>
+        <Link to='/login'>Logga in</Link>
       </li>
     </ul>
   );
 
   return (
-    <nav className="navbar bg-dark">
+    <nav className='navbar bg-dark'>
       <h1>
-        <Link to="/">
-          <i className="fas fa-code" /> DevConnector
+        <Link to='/'>
+          <i className='fas fa-receipt' /> Fakturameistern
         </Link>
       </h1>
       {!loading && (
@@ -61,7 +57,7 @@ Navbar.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth
 });
 

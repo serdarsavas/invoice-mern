@@ -12,7 +12,7 @@ import {
 //TODO update profile
 
 // Get current users profile
-export const getCurrentProfile = () => async (dispatch) => {
+export const getCurrentProfile = () => async dispatch => {
   try {
     const res = await axios.get('/api/profile/me');
 
@@ -29,7 +29,7 @@ export const getCurrentProfile = () => async (dispatch) => {
 };
 
 // Get profile by ID
-export const getProfileById = (userId) => async (dispatch) => {
+export const getProfileById = userId => async dispatch => {
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
 
@@ -46,9 +46,11 @@ export const getProfileById = (userId) => async (dispatch) => {
 };
 
 // Create or update profile
-export const createProfile = (formData, history, edit = false) => async (
-  dispatch
-) => {
+export const createProfile = (
+  formData,
+  history,
+  edit = false
+) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -72,7 +74,7 @@ export const createProfile = (formData, history, edit = false) => async (
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
 
     dispatch({
@@ -83,7 +85,7 @@ export const createProfile = (formData, history, edit = false) => async (
 };
 
 // Delete account & profile
-export const deleteAccount = () => async (dispatch) => {
+export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
       await axios.delete('/api/profile');
