@@ -28,17 +28,17 @@ const ProfileForm = ({
 }) => {
   const [formData, setFormData] = useState(initialState);
 
-  // useEffect(() => {
-  //   if (!profile) getCurrentProfile();
-  //   if (!loading && profile) {
-  //     const profileData = { ...initialState };
-  //     for (const key in profile) {
-  //       if (key in profileData) profileData[key] = profile[key];
-  //     }
+  useEffect(() => {
+    if (!profile) getCurrentProfile();
+    if (!loading && profile) {
+      const profileData = { ...initialState };
+      for (const key in profile) {
+        if (key in profileData) profileData[key] = profile[key];
+      }
 
-  //     setFormData(profileData);
-  //   }
-  // }, [loading, getCurrentProfile, profile]);
+      setFormData(profileData);
+    }
+  }, [loading, getCurrentProfile, profile]);
 
   const {
     phone,
@@ -46,13 +46,13 @@ const ProfileForm = ({
     website,
     street,
     zip,
-    city,
-    company,
-    position,
-    registrationNumber,
-    vatNumber,
-    bankgiro,
-    invoiceTemplate
+    city
+    // company,
+    // position,
+    // registrationNumber,
+    // vatNumber,
+    // bankgiro,
+    // invoiceTemplate
   } = formData;
 
   const onChange = e =>
@@ -64,24 +64,21 @@ const ProfileForm = ({
   };
 
   return (
-    <div className='w-full max-w-lg mx-auto'>
-      <h1 className='text-primary text-4xl font-medium mb-3'>Din Profil</h1>
+    <div className='form-wrapper'>
+      <h1 className='title'>Din Profil</h1>
       <p className='text-dark text-xl mb-2'>
         <i className='fas fa-user' /> Gör ändringar
       </p>
       <small className='mb-4 block'>* = obligatoriskt fält</small>
 
       <form className='w-full max-w-lg'>
-        <div className='flex flex-wrap -mx-3 mb-6'>
-          <div className='w-full px-3 mb-6 md:mb-0'>
-            <label
-              className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-              htmlFor='grid-phone'
-            >
+        <div className='form-innner-wrapper'>
+          <div className='form-group'>
+            <label className='label' htmlFor='grid-phone'>
               * Telefon
             </label>
             <input
-              className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
+              className='input'
               type='text'
               id='grid-phone'
               placeholder='Telefon'
@@ -91,11 +88,8 @@ const ProfileForm = ({
               required
             />
           </div>
-          <div className='w-full px-3'>
-            <label
-              className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-              htmlFor='grid-wechatId'
-            >
+          <div className='form-group'>
+            <label className='label' htmlFor='grid-wechatId'>
               Wechat ID
             </label>
             <input
