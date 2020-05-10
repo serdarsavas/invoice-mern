@@ -33,11 +33,11 @@ const Dashboard = ({
         </Fragment>
       ) : (
         <Fragment>
-          <p>
+          <p className='text-lg'>
             Du har ännu inte någon profil. För att kunna skapa fakturor behöver
-            du uppdatera din användarinformation.
+            du uppdatera dina uppgifter.
           </p>
-          <Link to='/create-profile' className='btn btn-primary my-1'>
+          <Link to='/create-profile' className='btn btn-primary my-3'>
             Skapa Profil
           </Link>
         </Fragment>

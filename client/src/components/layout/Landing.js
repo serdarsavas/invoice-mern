@@ -17,7 +17,7 @@ const Landing = ({ isAuthenticated }) => {
             Skapa fakturor och samla dem på ett och samma ställe.
           </p>
           <div className='buttons'>
-            <Link to='/register' className='btn btn-primary action-btn'>
+            <Link to='/register' className='btn btn-primary'>
               Registrera dig
             </Link>
             <Link to='/login' className='btn btn-light action-btn'>

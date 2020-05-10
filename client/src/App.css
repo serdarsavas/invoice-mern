@@ -100,7 +100,7 @@ img {
 }
 
 /* Margin */
-.m {
+/* .m {
   margin: 0.5rem;
 }
 .m-1 {
@@ -123,13 +123,13 @@ img {
 }
 .my-3 {
   margin: 3rem 0;
-}
+} */
 
-.action-btn {
+/* .action-btn {
   width: 10rem;
-}
+} */
 
-.btn {
+/* .btn {
   display: inline-block;
   background: var(--light-color);
   color: #333;
@@ -140,7 +140,7 @@ img {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
-}
+} */
 
 .badge {
   font-size: 0.8rem;
@@ -159,58 +159,58 @@ img {
   color: #333;
 }
 
-.btn-primary,
+/* .btn-primary,
 .bg-primary,
 .badge-primary,
 .alert-primary {
   background: var(--primary-color);
   color: #fff;
-}
+} */
 
-.btn-light,
+/* .btn-light,
 .bg-light,
 .badge-light,
 .alert-light {
   background: var(--light-color);
   color: #333;
-}
+} */
 
-.btn-dark,
+/* .btn-dark,
 .bg-dark,
 .badge-dark,
 .alert-dark {
   background: var(--dark-color);
   color: #fff;
-}
-
+} */
+/* 
 .btn-danger,
 .bg-danger,
 .badge-danger,
 .alert-danger {
   background: var(--danger-color);
   color: #fff;
-}
-
+} */
+/* 
 .btn-success,
 .bg-success,
 .badge-success,
 .alert-success {
   background: var(--success-color);
   color: #fff;
-}
+} */
 
-.btn-white,
+/* .btn-white,
 .bg-white,
 .badge-white,
 .alert-white {
   background: #fff;
   color: #333;
   border: #ccc solid 1px;
-}
+} */
 
-.btn:hover {
+/* .btn:hover {
   opacity: 0.8;
-}
+} */
 
 .bg-light,
 .badge-light {

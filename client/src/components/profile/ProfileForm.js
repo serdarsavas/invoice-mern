@@ -46,13 +46,13 @@ const ProfileForm = ({
     website,
     street,
     zip,
-    city
-    // company,
-    // position,
-    // registrationNumber,
-    // vatNumber,
-    // bankgiro,
-    // invoiceTemplate
+    city,
+    company,
+    position,
+    registrationNumber,
+    vatNumber,
+    bankgiro,
+    invoiceTemplate
   } = formData;
 
   const onChange = e =>
@@ -61,6 +61,7 @@ const ProfileForm = ({
   const onSubmit = e => {
     e.preventDefault();
     createProfile(formData, history, profile ? true : false);
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   };
 
   return (
@@ -71,8 +72,8 @@ const ProfileForm = ({
       </p>
       <small className='mb-4 block'>* = obligatoriskt fält</small>
 
-      <form className='w-full max-w-lg'>
-        <div className='form-innner-wrapper'>
+      <form onSubmit={onSubmit} className='w-full max-w-lg'>
+        <div className='form-inner-wrapper'>
           <div className='form-group'>
             <label className='label' htmlFor='grid-phone'>
               * Telefon
@@ -93,7 +94,7 @@ const ProfileForm = ({
               Wechat ID
             </label>
             <input
-              className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+              className='input'
               id='grid-wechatId'
               type='text'
               placeholder='Ditt Wechat ID'
@@ -102,15 +103,12 @@ const ProfileForm = ({
               onChange={onChange}
             />
           </div>
-          <div className='w-full px-3'>
-            <label
-              className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-              htmlFor='grid-website'
-            >
+          <div className='form-group'>
+            <label className='label' htmlFor='grid-website'>
               Hemsida
             </label>
             <input
-              className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+              className='input'
               id='grid-website'
               type='text'
               placeholder='Hemsida'
@@ -119,15 +117,12 @@ const ProfileForm = ({
               onChange={onChange}
             />
           </div>
-          <div className='w-full px-3'>
-            <label
-              className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-              htmlFor='grid-street'
-            >
-              Gatuadress
+          <div className='form-group'>
+            <label className='label' htmlFor='grid-street'>
+              * Gatuadress
             </label>
             <input
-              className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+              className='input'
               id='grid-street'
               type='text'
               placeholder='Vasagatan 1'
@@ -137,41 +132,118 @@ const ProfileForm = ({
               required
             />
           </div>
-          <div className='w-full md:w-1/2 px-3'>
-            <label
-              className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-              htmlFor='grid-zip'
-            >
-              Postkod
+          <div className='flex flex-wrap'>
+            <div className='form-group md:w-1/2'>
+              <label className='label' htmlFor='grid-zip'>
+                * Postkod
+              </label>
+              <input
+                className='input'
+                id='grid-zip'
+                type='text'
+                placeholder='111 11'
+                name='zip'
+                value={zip}
+                onChange={onChange}
+                required
+              />
+            </div>
+            <div className='form-group md:w-1/2'>
+              <label className='label' htmlFor='grid-city'>
+                * Ort
+              </label>
+              <input
+                className='input'
+                id='grid-city'
+                type='text'
+                placeholder='Arvidsjaur'
+                name='city'
+                value={city}
+                onChange={onChange}
+                required
+              />
+            </div>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='company' className='label'>
+              * Företag
             </label>
             <input
-              className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-              id='grid-zip'
               type='text'
-              placeholder='111 11'
-              name='zip'
-              value={zip}
+              className='input'
+              id='company'
+              placeholder='SpaceX Inc.'
+              name='company'
+              value={company}
               onChange={onChange}
               required
             />
           </div>
-          <div className='w-full md:w-1/2 px-3'>
-            <label
-              className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-              htmlFor='grid-city'
-            >
-              Ort
+          <div className='form-group'>
+            <label htmlFor='position' className='label'>
+              Yrkesroll
             </label>
             <input
-              className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-              id='grid-city'
               type='text'
-              placeholder='Arvidsjaur'
-              name='city'
-              value={city}
+              className='input'
+              id='position'
+              placeholder='Författare'
+              name='position'
+              value={position}
+              onChange={onChange}
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='registration-number' className='label'>
+              * Organisationsnummer
+            </label>
+            <input
+              type='text'
+              className='input'
+              id='registration-number'
+              placeholder='650323-2345.'
+              name='registrationNumber'
+              value={registrationNumber}
               onChange={onChange}
               required
             />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='vat-number' className='label'>
+              * Momsreg.
+            </label>
+            <input
+              type='text'
+              className='input'
+              id='vat-number'
+              placeholder='SE6503232345.'
+              name='vatNumber'
+              value={vatNumber}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='bankgiro' className='label'>
+              Bankgiro / Kontonummer
+            </label>
+            <input
+              type='text'
+              className='input'
+              id='bankgiro'
+              placeholder='SE6503232345.'
+              name='vatNumber'
+              value={vatNumber}
+              onChange={onChange}
+            />
+          </div>
+          <div className='form-group'>
+            <button className='btn btn-primary'>
+              {profile ? 'Uppdatera' : 'Skapa profil'}
+            </button>
+            <Link className='btn btn-dark' to='/dashboard'>
+              Gå tillbaka
+            </Link>
           </div>
         </div>
       </form>

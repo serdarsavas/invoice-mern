@@ -12,51 +12,70 @@ const Login = ({ login, isAuthenticated }) => {
 
   const { email, password } = formData;
 
-  const onChange = (e) =>
+  const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e) => {
+  const onSubmit = async e => {
     e.preventDefault();
     login(email, password);
   };
 
   if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to='/dashboard' />;
   }
 
   return (
-    <Fragment>
-      <h1 className="large text-primary">Logga in</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Logga in på ditt konto
+    <section className='w-full max-w-xl m-auto'>
+      <h1 className='text-primary text-3xl'>Logga in</h1>
+      <p className='text-lg my-4'>
+        <i className='fas fa-user' /> Logga in på ditt konto
       </p>
-      <form className="form" onSubmit={(e) => onSubmit(e)}>
-        <div className="form-group">
+      <form
+        className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'
+        onSubmit={e => onSubmit(e)}
+      >
+        <label class='block text-gray-700 text-sm font-bold mb-2' for='email'>
+          Email
+        </label>
+        <div className='mb-4'>
           <input
-            type="email"
-            placeholder="Epostadress"
-            name="email"
+            className='input'
+            type='email'
+            placeholder='janedoe@gmail.com'
+            name='email'
             value={email}
-            onChange={(e) => onChange(e)}
+            onChange={e => onChange(e)}
             required
           />
         </div>
-        <div className="form-group">
+        <div className='mb-6'>
+          <label
+            class='block text-gray-700 text-sm font-bold mb-2'
+            for='password'
+          >
+            Lösenord
+          </label>
           <input
-            type="password"
-            placeholder="Lösenord"
-            name="password"
+            className='input'
+            type='password'
+            placeholder='Minst sex tecken'
+            name='password'
             value={password}
-            onChange={(e) => onChange(e)}
-            minLength="6"
+            onChange={e => onChange(e)}
+            minLength='6'
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Login" />
+        <div className='flex items-center justify-between'>
+          <button className='btn btn-primary'>Logga In</button>
+          <Link
+            to='/register'
+            className='text-primary inline-block align-baseline font-bold text-sm hover:underline'
+          >
+            Inget konto? Registrera dig här
+          </Link>
+        </div>
       </form>
-      <p className="my-1">
-        Har du inget konto? <Link to="/register">Registrera dig</Link>
-      </p>
-    </Fragment>
+    </section>
   );
 };
 
@@ -65,7 +84,7 @@ Login.propTypes = {
   isAuthenticated: PropTypes.bool
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 

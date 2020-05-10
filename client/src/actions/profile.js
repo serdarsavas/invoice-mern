@@ -65,7 +65,7 @@ export const createProfile = (
       payload: res.data
     });
 
-    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
+    dispatch(setAlert(edit ? 'Profil Uppdaterad' : 'Profil Skapad', 'success'));
 
     if (!edit) {
       history.push('/dashboard');
