@@ -15,7 +15,7 @@ const Login = ({ login, isAuthenticated }) => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault();
     login(email, password);
   };
@@ -32,7 +32,7 @@ const Login = ({ login, isAuthenticated }) => {
       </p>
       <form
         className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'
-        onSubmit={e => onSubmit(e)}
+        onSubmit={onSubmit}
       >
         <label class='block text-gray-700 text-sm font-bold mb-2' for='email'>
           Email

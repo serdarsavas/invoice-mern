@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
+const config = require('config');
+const AutoIncrementFactory = require('mongoose-sequence');
 
-const Schema = mongoose.Schema;
+const db = config.get('mongoURI');
 
-const invoiceSchema = new Schema(
+const InvoiceSchema = new mongoose.Schema(
   {
     invoiceNumber: {
-      type: String,
-      required: true
+      type: Number
     },
     assignmentNumber: String,
     recipient: {
@@ -36,14 +37,12 @@ const invoiceSchema = new Schema(
           type: Number,
           required: true
         },
-        unit: String,
         price: {
           type: Number,
           required: true
         },
         amount: {
-          type: Number,
-          required: true
+          type: Number
         },
         hasVAT: Boolean
       }
@@ -51,7 +50,7 @@ const invoiceSchema = new Schema(
     totalBeforeVAT: Number,
     totalAfterVAT: Number,
     owner: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User'
     }
@@ -61,4 +60,12 @@ const invoiceSchema = new Schema(
   }
 );
 
-module.exports = Invoice = mongoose.model('invoice', invoiceSchema);
+mongoose.createConnection(db).then(connection => {
+  InvoiceSchema.plugin(AutoIncrementFactory(connection), {
+    inc_field: 'invoiceNumber',
+    disable_hooks: true,
+    start_seq: 100
+  });
+});
+
+module.exports = Invoice = mongoose.model('invoice', InvoiceSchema);

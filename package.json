@@ -1,5 +1,5 @@
 {
-  "name": "Fakturameisten",
+  "name": "Fakturameistern",
   "version": "1.0.0",
   "description": "Invoice app generating pdfs",
   "main": "server.js",
@@ -21,6 +21,7 @@
     "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.5",
+    "mongoose-sequence": "^5.2.2",
     "normalize-url": "^5.0.0"
   },
   "devDependencies": {

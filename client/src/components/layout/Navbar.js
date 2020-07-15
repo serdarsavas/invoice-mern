@@ -6,47 +6,67 @@ import { logout } from '../../actions/auth';
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
-    <ul>
-      <li>
-        <Link to='/invoice'>Ny faktura</Link>
-      </li>
-      <li>
-        <Link to='/invoices'>Fakturor</Link>
-      </li>
-      <li>
-        <Link to='/dashboard'>
-          <i className='fas fa-user' /> <span className='hide-sm'>Profil</span>
-        </Link>
-      </li>
-      <li>
-        <a onClick={logout} href='#!'>
-          <i className='fas fa-sign-out-alt' />{' '}
-          <span className='hide-sm'>Logga ut</span>
-        </a>
-      </li>
-    </ul>
+    <Fragment>
+      <Link
+        to='/invoice'
+        className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-6'
+      >
+        Ny faktura
+      </Link>
+
+      <Link
+        to='/invoices'
+        className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-6'
+      >
+        Fakturor
+      </Link>
+
+      <Link
+        to='/edit-profile'
+        className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-12'
+      >
+        <i className='fas fa-user' /> <span>Profil</span>
+      </Link>
+
+      <a
+        onClick={logout}
+        href='#!'
+        className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white'
+      >
+        <i className='fas fa-sign-out-alt' />{' '}
+        <span className='hide-sm'>Logga ut</span>
+      </a>
+    </Fragment>
   );
 
   const guestLinks = (
-    <ul>
-      <li>
-        <Link to='/register'>Registrering</Link>
-      </li>
-      <li>
-        <Link to='/login'>Logga in</Link>
-      </li>
-    </ul>
+    <Fragment>
+      <Link
+        to='/register'
+        className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-8'
+      >
+        Registrering
+      </Link>
+      <Link
+        to='/login'
+        className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white'
+      >
+        Logga in
+      </Link>
+    </Fragment>
   );
 
   return (
-    <nav className='navbar bg-dark'>
-      <h1>
+    <nav className='flex items-center justify-between flex-wrap bg-dark p-6'>
+      <div className='w-full inline-block text-white flex-grow lg:w-auto'>
         <Link to='/'>
           <i className='fas fa-receipt' /> Fakturameistern
         </Link>
-      </h1>
+      </div>
       {!loading && (
-        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+        <div className='w-full block flex-grow lg:flex lg:items-center lg:w-auto'>
+          {isAuthenticated ? authLinks : guestLinks}
+        </div>
       )}
     </nav>
   );

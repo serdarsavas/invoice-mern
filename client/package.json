@@ -17,12 +17,10 @@
     "uuid": "^7.0.2"
   },
   "scripts": {
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run build:css && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,8 +39,6 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "autoprefixer": "^9.7.6",
-    "postcss-cli": "^7.1.1",
-    "tailwindcss": "^1.4.6"
+    "autoprefixer": "^9.7.6"
   }
 }
