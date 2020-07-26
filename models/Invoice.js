@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const config = require('config');
-const AutoIncrementFactory = require('mongoose-sequence');
+// const config = require('config');
+// const AutoIncrementFactory = require('mongoose-sequence');
 
-const db = config.get('mongoURI');
+// const db = config.get('mongoURI');
 
 const InvoiceSchema = new mongoose.Schema(
   {
@@ -49,9 +49,8 @@ const InvoiceSchema = new mongoose.Schema(
     ],
     totalBeforeVAT: Number,
     totalAfterVAT: Number,
-    owner: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       ref: 'User'
     }
   },
@@ -60,12 +59,12 @@ const InvoiceSchema = new mongoose.Schema(
   }
 );
 
-mongoose.createConnection(db).then(connection => {
-  InvoiceSchema.plugin(AutoIncrementFactory(connection), {
-    inc_field: 'invoiceNumber',
-    disable_hooks: true,
-    start_seq: 100
-  });
-});
+// mongoose.createConnection(db).then(connection => {
+//   InvoiceSchema.plugin(AutoIncrementFactory(connection), {
+//     inc_field: 'invoiceNumber',
+//     disable_hooks: true,
+//     start_seq: 100
+//   });
+// });
 
 module.exports = Invoice = mongoose.model('invoice', InvoiceSchema);

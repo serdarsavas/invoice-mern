@@ -27,9 +27,16 @@ router.post(
     }
 
     try {
-      const invoice = new Invoice({ ...req.body });
+      const { street, city, description, quantity, price } = req.body;
+      const invoice = new Invoice({
+        recipient: { street, city },
+        description,
+        quantity,
+        price,
+        user: req.user
+      });
 
-      invoice.setNext();
+      res.json(invoice);
       await invoice.save();
     } catch (err) {
       console.error(err);
